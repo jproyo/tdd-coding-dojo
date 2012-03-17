@@ -27,7 +27,7 @@ class TestXXX < Test::Unit::TestCase
 		argentine_calendar = WorkingDatesCalendar.new
 		argentine_calendar.add_non_working_day('Sunday')
 		argentine_calendar.add_non_working_day('Saturday')
-		argentine_calendar.add_non_working_year_day(16,'Mar')
+		argentine_calendar.add_non_working_month_day(16,'Mar')
 		assert argentine_calendar.is_non_working_date(january_first)
 	end
 	
