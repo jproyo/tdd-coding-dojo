@@ -43,13 +43,13 @@ class TestXXX < Test::Unit::TestCase
 	
 	def test_when_calendar_has_non_working_date_returns_non_working_for_that_date
 		argentine_calendar = WorkingDatesCalendar.new
-		argentine_calendar.add_non_working_date(specific_date)
+		argentine_calendar.add_non_working_date(Rule::NonWorkingSpecificRule.new(specific_date))
 		assert argentine_calendar.is_non_working_date(specific_date)
 	end
 
 	def test_when_calendar_has_non_working_date_returns_working_for_that_date
 		argentine_calendar = WorkingDatesCalendar.new
-		argentine_calendar.add_non_working_date(march_sixteen)
+		argentine_calendar.add_non_working_date(Rule::NonWorkingSpecificRule.new(march_sixteen))
 		assert !argentine_calendar.is_non_working_date(march_seventeen)
 	end
 

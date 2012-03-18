@@ -4,7 +4,6 @@ class WorkingDatesCalendar
 
 	def initialize
 		@non_working_rules = []
-		@non_working_date = []
 	end
 
 	def is_non_working_date(date)
@@ -12,7 +11,7 @@ class WorkingDatesCalendar
 	end
 
 	def is_non_working_specific_date?(date)
-		@non_working_date.include?(date)
+		@non_working_rules.any? {|rule| rule.is_non_working(date) }
 	end
 
 	def is_non_working_month_day?(date)
@@ -23,8 +22,8 @@ class WorkingDatesCalendar
 		@non_working_rules.any? {|rule| rule.is_non_working(date) }
 	end
 
-	def add_non_working_date(date)
-		@non_working_date << date
+	def add_non_working_date(rule_date)
+		@non_working_rules << rule_date
 	end
 
 	def add_non_working_day(rule_day)

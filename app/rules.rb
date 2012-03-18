@@ -30,5 +30,15 @@ module Rule
 		end
 	end
 			
+	class NonWorkingSpecificRule < NonWorkingRule
+
+		def initialize(date)
+			@specific_date = date
+		end
+
+		def is_non_working(date)
+			super(date) {|d| d == @specific_date }
+		end
+	end
 
 end
