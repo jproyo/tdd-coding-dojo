@@ -1,32 +1,33 @@
 require 'test/unit'
 require 'date'
 require_relative '../app/working_dates_calendar'
+require_relative '../app/rules'
 
 class TestXXX < Test::Unit::TestCase
 
 	def test_when_calendar_has_a_non_working_day_of_weeks_returns_non_working_for_that_day_of_week
 		argentine_calendar = WorkingDatesCalendar.new
-		argentine_calendar.add_non_working_day('Sunday')
+		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Sunday'))
 		assert(argentine_calendar.is_non_working_date(some_sunday))
 	end
 
 	def test_when_calendar_has_a_working_day_of_weeks_returns_working_for_that_day_of_week
 		argentine_calendar = WorkingDatesCalendar.new
-		argentine_calendar.add_non_working_day('Sunday')
+		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Sunday'))
 		assert(!argentine_calendar.is_non_working_date(some_monday))
 	end
 
 	def test_when_calendar_has_more_than_one_non_working_day_a_week
 		argentine_calendar = WorkingDatesCalendar.new
-		argentine_calendar.add_non_working_day('Sunday')
-		argentine_calendar.add_non_working_day('Saturday')
+		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Sunday'))
+		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Saturday'))
 		assert(argentine_calendar.is_non_working_date(some_saturday))
 	end
 
 	def test_when_calendar_has_non_working_day_in_a_specific_month_returns_non_working_for_that_day_of_month
 		argentine_calendar = WorkingDatesCalendar.new
-		argentine_calendar.add_non_working_day('Sunday')
-		argentine_calendar.add_non_working_day('Saturday')
+		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Sunday'))
+		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Saturday'))
 		argentine_calendar.add_non_working_month_day(16,'Mar')
 		assert argentine_calendar.is_non_working_date(january_first)
 	end

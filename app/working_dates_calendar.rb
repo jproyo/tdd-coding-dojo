@@ -9,10 +9,10 @@ class WorkingDatesCalendar
 	end
 
 	def is_non_working_date(date)
-		true if is_non_working_day?(date) or is_non_working_month_day?(date) or is_non_working_date?(date)
+		true if is_non_working_day?(date) or is_non_working_month_day?(date) or is_non_working_specific_date?(date)
 	end
 
-	def is_non_working_date?(date)
+	def is_non_working_specific_date?(date)
 		@non_working_date.include?(date)
 	end
 
@@ -21,15 +21,15 @@ class WorkingDatesCalendar
 	end
 
 	def is_non_working_day?(date)
-		@non_working_days.include?(Date::DAYNAMES[date.wday])
+		@non_working_days.any? {|rule| rule.is_non_working(date) }
 	end
 
 	def add_non_working_date(date)
 		@non_working_date << date
 	end
 
-	def add_non_working_day(day)
-		@non_working_days << day
+	def add_non_working_day(rule_day)
+		@non_working_days << rule_day
 	end
 
 	def add_non_working_month_day(day, month)
