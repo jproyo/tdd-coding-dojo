@@ -5,10 +5,11 @@ class WorkingDatesCalendar
 	def initialize
 		@non_working_days = []
 		@non_working_month_day = []
+		@non_working_date = []
 	end
 
 	def is_non_working_date(date)
-		true if is_non_working_day?(date) or is_non_working_month_day?(date)
+		true if is_non_working_day?(date) or is_non_working_month_day?(date) or @non_working_date.include?(date)
 	end
 
 	def is_non_working_month_day?(date)
@@ -17,6 +18,10 @@ class WorkingDatesCalendar
 
 	def is_non_working_day?(date)
 		@non_working_days.include?(Date::DAYNAMES[date.wday])
+	end
+
+	def add_non_working_date(date)
+		@non_working_date << date
 	end
 
 	def add_non_working_day(day)

@@ -31,7 +31,18 @@ class TestXXX < Test::Unit::TestCase
 		assert argentine_calendar.is_non_working_date(january_first)
 	end
 	
+	def test_5
+		argentine_calendar = WorkingDatesCalendar.new
+		argentine_calendar.add_non_working_date(specific_date)
+		assert argentine_calendar.is_non_working_date(specific_date)
+	end
+
+
 	private
+
+	def specific_date
+		Date.new
+	end
 
 	def january_first
 		Date.new(2012, 3, 16)
