@@ -23,7 +23,7 @@ class TestXXX < Test::Unit::TestCase
 		assert(argentine_calendar.is_non_working_date(some_saturday))
 	end
 
-	def test_4
+	def test_when_calendar_has_non_working_day_in_a_specific_month_returns_non_working_for_that_day_of_month
 		argentine_calendar = WorkingDatesCalendar.new
 		argentine_calendar.add_non_working_day('Sunday')
 		argentine_calendar.add_non_working_day('Saturday')
@@ -31,7 +31,7 @@ class TestXXX < Test::Unit::TestCase
 		assert argentine_calendar.is_non_working_date(january_first)
 	end
 	
-	def test_5
+	def test_when_calendar_has_non_working_date_returns_non_working_for_that_date
 		argentine_calendar = WorkingDatesCalendar.new
 		argentine_calendar.add_non_working_date(specific_date)
 		assert argentine_calendar.is_non_working_date(specific_date)
