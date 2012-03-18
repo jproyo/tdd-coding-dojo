@@ -9,7 +9,11 @@ class WorkingDatesCalendar
 	end
 
 	def is_non_working_date(date)
-		true if is_non_working_day?(date) or is_non_working_month_day?(date) or @non_working_date.include?(date)
+		true if is_non_working_day?(date) or is_non_working_month_day?(date) or is_non_working_date?(date)
+	end
+
+	def is_non_working_date?(date)
+		@non_working_date.include?(date)
 	end
 
 	def is_non_working_month_day?(date)
