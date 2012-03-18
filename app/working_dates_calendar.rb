@@ -3,8 +3,7 @@ require_relative 'month_day'
 class WorkingDatesCalendar
 
 	def initialize
-		@non_working_days = []
-		@non_working_month_day = []
+		@non_working_rules = []
 		@non_working_date = []
 	end
 
@@ -17,11 +16,11 @@ class WorkingDatesCalendar
 	end
 
 	def is_non_working_month_day?(date)
-		@non_working_month_day.include?(MonthDay.new(date.day,Date::ABBR_MONTHNAMES[date.month]))
+		@non_working_rules.any? {|rule| rule.is_non_working(date) }
 	end
 
 	def is_non_working_day?(date)
-		@non_working_days.any? {|rule| rule.is_non_working(date) }
+		@non_working_rules.any? {|rule| rule.is_non_working(date) }
 	end
 
 	def add_non_working_date(date)
@@ -29,11 +28,11 @@ class WorkingDatesCalendar
 	end
 
 	def add_non_working_day(rule_day)
-		@non_working_days << rule_day
+		@non_working_rules << rule_day
 	end
 
-	def add_non_working_month_day(day, month)
-		@non_working_month_day << MonthDay.new(day, month)
+	def add_non_working_month_day(rule_month)
+		@non_working_rules << rule_month
 	end
 
 

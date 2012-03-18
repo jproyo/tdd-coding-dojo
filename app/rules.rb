@@ -1,4 +1,5 @@
 require 'date'
+require_relative 'month_day'
 
 module Rule
 	class NonWorkingRule
@@ -17,4 +18,17 @@ module Rule
 			super(date) {|d| Date::DAYNAMES[d.wday] == @day }
 		end
 	end
+
+	class NonWorkingMonthDayRule < NonWorkingRule
+
+		def initialize(day,month)
+			@month_day = MonthDay.new(day,month)
+		end
+
+		def is_non_working(date)
+			super(date) {|d| MonthDay.new(d.day,Date::ABBR_MONTHNAMES[d.month]) == @month_day }
+		end
+	end
+			
+
 end

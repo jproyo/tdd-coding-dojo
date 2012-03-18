@@ -28,7 +28,7 @@ class TestXXX < Test::Unit::TestCase
 		argentine_calendar = WorkingDatesCalendar.new
 		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Sunday'))
 		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Saturday'))
-		argentine_calendar.add_non_working_month_day(16,'Mar')
+		argentine_calendar.add_non_working_month_day(Rule::NonWorkingMonthDayRule.new(16,'Mar'))
 		assert argentine_calendar.is_non_working_date(march_sixteen)
 	end
 
@@ -36,7 +36,7 @@ class TestXXX < Test::Unit::TestCase
 		argentine_calendar = WorkingDatesCalendar.new
 		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Sunday'))
 		argentine_calendar.add_non_working_day(Rule::NonWorkingDayRule.new('Saturday'))
-		argentine_calendar.add_non_working_month_day(17,'Mar')
+		argentine_calendar.add_non_working_month_day(Rule::NonWorkingMonthDayRule.new(17,'Mar'))
 		assert(!argentine_calendar.is_non_working_date(march_sixteen))
 	end
 
